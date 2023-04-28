@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const { default: Layout } = require("@/components/layout")
 
@@ -6,7 +6,10 @@ const Home = () => {
   const {data: session} = useSession();
 
   if(!session){
-    return <div>sign in</div>
+    return <>
+    Not signed in <br/>
+    <button onClick={() => signIn('facebook')}>Sign in</button>
+  </>
   }
 
   return <Layout>
